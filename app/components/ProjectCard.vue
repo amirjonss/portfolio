@@ -2,6 +2,8 @@
 import type { Project } from '~/data/projects'
 
 const props = defineProps<{ project: Project }>()
+const { goal } = useAnalytics()
+const openDemo = () => goal('demo_open', { project: props.project.id })
 
 const base = computed(() => `projects.items.${props.project.id}`)
 const active = ref(0)
@@ -33,6 +35,7 @@ const links = computed(() => {
         :href="project.links.demo ?? undefined"
         target="_blank"
         rel="noopener"
+        @click="openDemo"
         class="group relative block aspect-[16/10] overflow-hidden rounded-xl border border-line bg-bg"
       >
         <Transition name="fade" mode="out-in">
@@ -118,6 +121,7 @@ const links = computed(() => {
           :href="project.links.demo"
           target="_blank"
           rel="noopener"
+          @click="openDemo"
           class="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-[#07100e] transition hover:bg-accent-hi"
         >
           {{ $t('projects.demo') }} ↗

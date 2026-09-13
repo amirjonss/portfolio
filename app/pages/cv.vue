@@ -21,6 +21,7 @@ const period = (from: string, to: string | null) => `${fmt(from)} — ${to ? fmt
 const bullets = (id: string) => list(`path.items.${id}.bullets`)
 const jobs = [...experience].reverse()
 const years = yearsOfExperience()
+const { goal } = useAnalytics()
 const cvPdf = computed(() => profile.cvPdf[locale.value] ?? profile.cvPdf.en)
 
 const facts = computed(() => [
@@ -49,6 +50,7 @@ const links = [
         <a
           :href="cvPdf"
           download
+          @click="goal('cv_pdf', { place: 'cv' })"
           class="rounded-lg bg-accent px-4 py-2 text-sm font-medium text-[#07100e] transition hover:bg-accent-hi"
         >
           ↓ {{ $t('profile.downloadPdf') }}

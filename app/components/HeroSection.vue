@@ -2,6 +2,7 @@
 import { profile, yearsOfExperience } from '~/data/profile'
 
 const { locale } = useI18n()
+const { goal } = useAnalytics()
 const years = yearsOfExperience()
 const cvPdf = computed(() => profile.cvPdf[locale.value] ?? profile.cvPdf.en)
 
@@ -70,6 +71,7 @@ const stats = [
         <a
           :href="cvPdf"
           download
+          @click="goal('cv_pdf', { place: 'hero' })"
           class="rounded-[10px] border border-line px-5 py-3 font-medium text-muted transition hover:border-dim hover:text-ink"
         >
           ↓ {{ $t('hero.ctaCv') }}

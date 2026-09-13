@@ -2,6 +2,8 @@ import tailwindcss from '@tailwindcss/vite'
 import { profile } from './app/data/profile'
 
 const SITE_URL = 'https://amirjon.uz'
+const YM_ID = process.env.NUXT_PUBLIC_YM_ID ?? '112551548'
+const isProd = process.env.NODE_ENV === 'production'
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
@@ -83,7 +85,9 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      // Токен Cloudflare Web Analytics: NUXT_PUBLIC_CF_BEACON_TOKEN в .env
+      // Яндекс.Метрика: переопределяется NUXT_PUBLIC_YM_ID; пусто — не грузится
+      ymId: YM_ID,
+      // Cloudflare Web Analytics: NUXT_PUBLIC_CF_BEACON_TOKEN в .env
       cfBeaconToken: '',
     },
   },
@@ -94,6 +98,17 @@ export default defineNuxtConfig({
       // %s без суффикса: имя уже внутри заголовков страниц
       titleTemplate: '%s',
       link: [{ rel: 'icon', href: '/favicon.ico' }],
+      // Загрузчик Метрики — в статичном HTML, как просит Яндекс. init и хиты — в
+      // app/plugins/analytics.client.ts. В dev не подключается.
+      ...(isProd && YM_ID
+        ? {
+            script: [
+              { innerHTML: `window.ym=window.ym||function(){(window.ym.a=window.ym.a||[]).push(arguments)};window.ym.l=1*new Date();`, tagPosition: 'head' },
+              { src: `https://mc.yandex.ru/metrika/tag.js?id=${YM_ID}`, async: true, tagPosition: 'head' },
+            ],
+            noscript: [{ innerHTML: `<div><img src="https://mc.yandex.ru/watch/${YM_ID}" style="position:absolute;left:-9999px" alt=""></div>`, tagPosition: 'bodyOpen' }],
+          }
+        : {}),
       meta: [
         { name: 'theme-color', content: '#0d0d0f' },
         { property: 'og:image', content: `${SITE_URL}/og.png` },

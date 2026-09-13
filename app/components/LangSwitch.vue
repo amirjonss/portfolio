@@ -2,6 +2,7 @@
 const { locale, locales, t } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 const route = useRoute()
+const { goal } = useAnalytics()
 
 const options = computed(() =>
   (locales.value as { code: string; name?: string }[]).map((l) => ({
@@ -23,6 +24,7 @@ const pathFor = (code: string) => `${switchLocalePath(code)}${route.hash}`
       v-for="option in options"
       :key="option.code"
       :to="pathFor(option.code)"
+      @click="option.code !== locale && goal('lang_switch', { to: option.code })"
       class="rounded-md px-2 py-1 font-mono text-xs transition-colors"
       :class="
         option.code === locale
