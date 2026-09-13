@@ -10,7 +10,6 @@ useSeoMeta({
   ogTitle: () => t('meta.title'),
   ogDescription: () => t('meta.description'),
   ogType: 'website',
-  twitterCard: 'summary_large_image',
 })
 
 /**
@@ -26,13 +25,19 @@ const projectsLd = computed(() => ({
     '@type': 'ListItem',
     position: index + 1,
     item: {
-      '@type': 'SoftwareSourceCode',
+      '@type': 'SoftwareApplication',
       name: t(`projects.items.${project.id}.name`),
       description: t(`projects.items.${project.id}.tagline`),
       abstract: t(`projects.items.${project.id}.problem`),
-      programmingLanguage: project.stack,
-      codeRepository: project.repo ?? undefined,
-      dateCreated: project.year,
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      url: project.links.demo ?? undefined,
+      screenshot: project.images.map((img) => `https://amirjon.uz${img}`),
+      programmingLanguage: [
+        ...(project.stack.backend ?? []),
+        ...project.stack.frontend,
+      ],
+      codeRepository: [project.links.repoApi, project.links.repoFront].filter(Boolean),
       author: { '@type': 'Person', name: 'Amirjon Fayzilloyev', url: 'https://amirjon.uz' },
     },
   })),
@@ -51,10 +56,12 @@ useHead({
 <template>
   <div>
     <HeroSection />
+    <FactsBar />
     <ProjectsSection />
     <StackSection />
     <AboutSection />
     <PathSection />
+    <EducationSection />
     <ContactSection />
   </div>
 </template>

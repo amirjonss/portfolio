@@ -8,7 +8,10 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "og": "node scripts/make-og.mjs"
+    "og": "node scripts/make-og.mjs",
+    "shots": "node scripts/capture-projects.mjs",
+    "cv:pdf": "node scripts/make-cv-pdf.mjs",
+    "build:all": "nuxt generate && node scripts/make-cv-pdf.mjs && nuxt generate"
   },
   "dependencies": {
     "@nuxtjs/i18n": "^10.6.0",

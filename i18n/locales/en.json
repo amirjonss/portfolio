@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Amirjon Fayzilloyev — Backend & DevOps Engineer",
-    "description": "Backend engineer from Uzbekistan. PHP, Symfony, Laravel, Docker, Vue.js. I take services from idea to production and keep them running.",
+    "description": "PHP / Symfony backend developer from Uzbekistan, 4 years of commercial experience. Symfony, API Platform, Docker, Vue.js. Open to remote and EU relocation.",
     "cvTitle": "CV — Amirjon Fayzilloyev",
     "cvDescription": "Full CV of Amirjon Fayzilloyev: backend and DevOps experience, stack, projects and contacts."
   },
@@ -9,67 +9,82 @@
     "projects": "Projects",
     "stack": "Stack",
     "about": "About",
-    "path": "Path",
+    "path": "Experience",
     "contact": "Contact",
     "cv": "CV",
     "menu": "Menu",
-    "switchLang": "Switch language"
+    "switchLang": "Switch language",
+    "education": "Education"
   },
   "hero": {
-    "badge": "3 services in production",
     "titleA": "Backends",
     "titleB": "that",
     "titleC": "stay up",
-    "lead": "PHP, Symfony, Laravel, Docker, Vue.js. I take services from idea to production — and keep them alive there.",
+    "lead": "PHP / Symfony backend developer with {years} years of commercial experience. I take services from idea to production — Docker, CI, monitoring — and keep them alive there.",
     "ctaProjects": "View projects",
     "ctaContact": "Get in touch",
-    "statYears": "Since 2022",
-    "statYearsLabel": "writing backends",
-    "statServices": "3",
-    "statServicesLabel": "services in production",
-    "statFocus": "PHP · Docker",
-    "statFocusLabel": "core stack"
+    "statYears": "{years} yrs",
+    "statYearsLabel": "commercial experience",
+    "statServices": "30+",
+    "statServicesLabel": "active users on a CRM I built",
+    "statFocus": "$1.9k / yr",
+    "statFocusLabel": "saved for a client on tooling",
+    "ctaCv": "CV (PDF)"
   },
   "projects": {
     "title": "Projects",
-    "subtitle": "Services I designed, built and deployed myself.",
+    "subtitle": "Deployed on my own server. Every demo opens in one click — no password needed.",
     "problem": "Problem",
     "role": "My role",
     "challenge": "Hard part",
-    "demo": "Live demo",
-    "code": "Source",
-    "soon": "Demo coming soon",
-    "status": { "live": "running", "wip": "in progress" },
+    "demo": "Open demo",
     "items": {
-      "billing-api": {
-        "name": "billing-api",
-        "tagline": "Subscription billing for SaaS",
-        "problem": "Invoicing was kept in spreadsheets. As soon as plans, proration and refunds appeared, every month ended with manual reconciliation and mistakes that reached customers.",
-        "role": "Sole backend developer: domain model, REST API, payment-provider webhooks, containerisation and deployment.",
-        "challenge": "Payment webhooks arrive out of order and more than once — a naive handler charges twice. I built an idempotent event log with a deduplication key and a retry queue on RabbitMQ, so a repeated callback is recorded but never billed again."
+      "warehouse": {
+        "name": "Wirehouse",
+        "tagline": "Stock and cash accounting for a wholesale trader",
+        "problem": "A wholesale food business lives by two questions: what is in stock and what it cost, and where the money is — who owes us, which seller is holding cash, what is left after expenses. All of it in two currencies at once.",
+        "role": "Solo, full stack: Symfony API, Vue client, plus Android build via Capacitor, desktop build via Electron and receipt printing over ESC/POS. 127 test files on the API.",
+        "challenge": "Money is never a float and is never summed across currencies. Sales are allocated over batches FIFO, and four append-only ledgers record every movement — a cancellation appends the opposite row instead of editing history. Every posting path takes pessimistic locks in a fixed order, so two simultaneous requests cannot spend the same cash twice."
       },
-      "crm-lite": {
-        "name": "crm-lite",
-        "tagline": "CRM for small teams",
-        "problem": "A small sales team tracked deals in chat and notes. Nothing was searchable, nobody could tell which deals had gone quiet, and handover between people lost context.",
-        "role": "Full stack: Laravel API and admin, Vue 3 interface, role model, Docker Compose setup for local work and production.",
-        "challenge": "The deals list grew to thousands of rows with related contacts, tasks and stages — classic N+1, the page took seconds. Eager loading plus a materialised summary table brought it under 100 ms and kept it there as the data grew."
+      "smm-crm": {
+        "name": "KH Agency CRM",
+        "tagline": "Content-planning CRM for an SMM agency",
+        "problem": "An agency runs dozens of client projects at once; every post has a format, target platforms, a deadline and an executor. Kept in chats, this falls apart: nobody sees today's plan, who is overloaded, or what is overdue.",
+        "role": "Full stack: Symfony API with real-time updates, Quasar client with kanban boards and a content calendar, three roles, PDF exports and a daily Telegram digest.",
+        "challenge": "Boards update without polling — Mercure pushes every card move over SSE to all open tabs. Heavy work such as reports and the Telegram digest goes through Messenger to Redis, so the request returns instantly and the job runs in the background."
       },
-      "tg-notifier": {
-        "name": "tg-notifier",
-        "tagline": "Notification bus over RabbitMQ",
-        "problem": "Several services each sent their own Telegram messages. Rate limits were hit, failed sends disappeared silently, and every new service duplicated the same code.",
-        "role": "Designed and built the service: message contract, queue topology, templates, retries and monitoring.",
-        "challenge": "Telegram limits the send rate and returns errors that must be treated differently — some are worth retrying, some are not. I added exponential backoff with a dead-letter queue, so a broken message stops eating the queue instead of blocking everything behind it."
+      "blender-course": {
+        "name": "Blender course",
+        "tagline": "Landing site for a 3D course",
+        "problem": "A Blender tutor needed a page that sells the course in Uzbek: what it covers, a showcase of student and author work, pricing plans and a way to enrol.",
+        "role": "Frontend: Quasar single-page app — sections with 3D renders, a YouTube portfolio gallery, pricing and a support form, with i18n.",
+        "challenge": "Layout rather than logic: a dozen YouTube embeds, a Swiper carousel and per-section 3D renders had to stay readable from a wide desktop down to a phone. Built on Quasar's responsive grid, with breakpoint-specific columns on the portfolio and pricing pages."
+      },
+      "renthouse": {
+        "name": "Renthouse",
+        "tagline": "Marketplace for renting cottages",
+        "problem": "Owners list cottages, guests search, save favourites and book. Both sides need the same app: a catalogue with photos and a map for guests, a cabinet with their own listings for owners.",
+        "role": "Frontend: Quasar single-page app — catalogue, cottage pages with Google Maps, favourites, owner cabinet with add/edit, auth, profile and i18n.",
+        "challenge": "A three-language interface (Uzbek, Russian, English), a cottage page with the location on Google Maps, and search filters backed by reference dictionaries — regions, districts, amenities, rental terms — each in its own Pinia store so the filters stay consistent across pages."
       }
-    }
+    },
+    "backend": "Backend",
+    "frontend": "Frontend",
+    "infra": "Infra",
+    "api": "API",
+    "codeFront": "Frontend code",
+    "codeApi": "API code",
+    "quickLogin": "one-click demo login",
+    "frontOnly": "frontend only",
+    "shot": "Screen {n} of {total}"
   },
   "stack": {
     "title": "Stack",
     "subtitle": "What I use daily, not what I once read about.",
     "groups": {
       "lang": "Languages",
-      "frameworks": "Frameworks",
+      "backend": "Backend",
+      "frontend": "Frontend",
       "data": "Data & queues",
       "ops": "Infrastructure",
       "quality": "Quality"
@@ -77,25 +92,80 @@
   },
   "about": {
     "title": "About",
-    "p1": "I'm Amirjon, a backend engineer from Uzbekistan. I started writing PHP in 2022 and stayed with it: Symfony where the domain matters, Laravel where speed of delivery matters more.",
-    "p2": "What I enjoy most is the part after the code is written — packing a service into a container, giving it a pipeline, metrics and backups, and watching it run without waking anyone at night.",
+    "p1": "I'm Amirjon, a backend engineer from Uzbekistan. I started writing PHP in 2022 and stayed with it: Symfony and API Platform where the domain matters, Laravel where speed of delivery matters more.",
+    "p2": "What I enjoy most is the part after the code is written — packing a service into a container, giving it a pipeline, metrics and backups, and watching it run without waking anyone at night. I have worked in teams of three to six with Git-flow, code review and a task tracker; on contracts I own the service end to end.",
     "p3": "Right now I'm looking for a team where I can own services end to end: from the data model to the deployment that ships them."
   },
   "path": {
-    "title": "Path",
-    "subtitle": "How I got here.",
+    "title": "Experience",
+    "subtitle": "Four years, four teams, remote throughout.",
+    "present": "Present",
+    "remote": "Remote",
+    "type": {
+      "fulltime": "Full-time",
+      "parttime": "Part-time",
+      "contract": "Contract"
+    },
+    "months": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec"
+    ],
     "items": {
-      "start": { "year": "2022", "title": "First line of PHP", "text": "Moved from scripts to real applications: MVC, databases, HTTP. Learned by rebuilding things that already existed until they worked the same way." },
-      "laravel": { "year": "2023", "title": "Laravel in practice", "text": "First delivered projects: admin panels, APIs, integrations. Learned that most of the work is not writing code but keeping it readable six months later." },
-      "symfony": { "year": "2024", "title": "Symfony and Docker", "text": "Moved to stricter architecture and containers. Test suites, static analysis, CI pipelines, deployment without downtime." },
-      "now": { "year": "Now", "title": "Looking for a team", "text": "Open to backend / DevOps roles — remote or relocation." }
+      "kadirov-group": {
+        "title": "Full Stack Developer",
+        "summary": "Two products in parallel: Boshqar.com, a trade automation platform, and AstraCode.net, an online education platform.",
+        "bullets": [
+          "Boshqar.com — sped up database queries and reworked the architecture of the public API; applied design patterns to keep it scalable.",
+          "AstraCode.net — user management, courses and a chat system; Redis and Elasticsearch for speed and search."
+        ],
+        "location": "Tashkent"
+      },
+      "kadirov-academy": {
+        "title": "Web Development Instructor",
+        "summary": "Taught web development online in groups of 20 and graduated three cohorts through a six-month intensive.",
+        "bullets": [
+          "Curriculum from scratch to Symfony, API Platform and Vue.js, built around real mini-projects.",
+          "Code reviews, mentorship and support outside class hours."
+        ],
+        "location": "Uzbekistan"
+      },
+      "joolpay": {
+        "title": "PHP Web Developer",
+        "summary": "Backend of a payment platform for non-cash tips by QR code. Focus on code quality, tests and new product features.",
+        "bullets": [
+          "Integrated a new payment provider with crypto support.",
+          "Built a monthly donation system that charges user accounts automatically.",
+          "Cleaned up the existing codebase and added unit tests."
+        ],
+        "location": "Lithuania"
+      },
+      "kh-agency": {
+        "title": "Full-Stack Developer",
+        "summary": "Designed and delivered a production CRM for an SMM agency with 30+ active users: content planning, task management and internal reporting.",
+        "bullets": [
+          "Saves the team 2–3 hours of daily operational work and $1,944 a year on third-party tools.",
+          "REST API on Symfony 7 and API Platform, role-based access, background jobs on Messenger + Redis, automated Telegram reporting.",
+          "Vue.js SPA, Docker environment, GitLab CI/CD; deployed and maintained the production server on Ubuntu 24.04."
+        ],
+        "location": "Uzbekistan"
+      }
     }
   },
   "contact": {
     "title": "Let's talk",
     "lead": "Open to backend and DevOps roles, remote or relocation. Fastest reply is on Telegram.",
     "email": "Email",
-    "downloadCv": "Open CV"
+    "downloadCv": "Open CV (web)"
   },
   "footer": {
     "built": "Built with Nuxt, deployed on my own server.",
@@ -108,7 +178,60 @@
     "summaryTitle": "Summary",
     "stackTitle": "Technical skills",
     "projectsTitle": "Selected projects",
-    "pathTitle": "Path",
-    "contactTitle": "Contacts"
+    "pathTitle": "Experience",
+    "contactTitle": "Contacts",
+    "educationTitle": "Education",
+    "factsTitle": "At a glance",
+    "print": "Print",
+    "factsLocation": "Location",
+    "factsFormat": "Work format",
+    "factsAvailability": "Availability"
+  },
+  "profile": {
+    "openToWork": "Open to work",
+    "availableNow": "available now",
+    "availability": {
+      "now": "Available now",
+      "two-weeks": "Available in 2 weeks",
+      "month": "Available in a month"
+    },
+    "workFormat": {
+      "remote": "Remote",
+      "relocation-eu": "Relocation to EU (visa sponsorship needed)",
+      "hybrid": "Hybrid"
+    },
+    "english": "English {level}",
+    "languages": "Languages",
+    "lang": {
+      "uz": "Uzbek",
+      "ru": "Russian",
+      "en": "English"
+    },
+    "level": {
+      "native": "native",
+      "fluent": "fluent",
+      "B2": "B2"
+    },
+    "location": "{city}, Uzbekistan · {tz}",
+    "roleLine": "Backend & DevOps Engineer · {city}, Uzbekistan · Remote / EU relocation",
+    "downloadPdf": "Download CV (PDF)",
+    "pdfHint": "One page, ATS-friendly",
+    "photoAlt": "Photo of Amirjon Fayzilloyev",
+    "city": "Tashkent"
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "Learning on purpose, not by accident.",
+    "view": "Open site",
+    "status": {
+      "in-progress": "In progress",
+      "completed": "Completed"
+    },
+    "present": "present",
+    "items": {
+      "school21": {
+        "desc": "Peer-to-peer programming school without teachers: projects are reviewed by other students, progress is measured by delivered work. Samarkand campus, main track."
+      }
+    }
   }
 }

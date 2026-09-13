@@ -1,4 +1,5 @@
 import tailwindcss from '@tailwindcss/vite'
+import { profile } from './app/data/profile'
 
 const SITE_URL = 'https://amirjon.uz'
 
@@ -57,12 +58,21 @@ export default defineNuxtConfig({
   // Пересобрать картинку: см. README, раздел «OG-картинка».
   ogImage: { enabled: false },
 
+  // twitter:* объявлены unhead устаревшими; X читает Open Graph
+  seo: { automaticTwitterTags: false },
+
+  // в резюме ссылка на сайт намеренно абсолютная — PDF открывают вне сайта
+  linkChecker: { skipInspections: ['absolute-site-urls'] },
+
   schemaOrg: {
     identity: {
       type: 'Person',
       name: 'Amirjon Fayzilloyev',
       url: SITE_URL,
-      jobTitle: 'Backend & DevOps Engineer',
+      jobTitle: 'Backend & DevOps Engineer (PHP / Symfony)',
+      ...(profile.photoJpg ? { image: `${SITE_URL}${profile.photoJpg}` } : {}),
+      knowsLanguage: ['uz', 'ru', 'en'],
+      homeLocation: { type: 'Place', name: 'Tashkent, Uzbekistan' },
       sameAs: [
         'https://github.com/amirjonss',
         'https://www.linkedin.com/in/amirjon-fayzilloyev/',
@@ -90,7 +100,6 @@ export default defineNuxtConfig({
         { property: 'og:image:width', content: '1200' },
         { property: 'og:image:height', content: '630' },
         { property: 'og:image:alt', content: 'Amirjon Fayzilloyev — Backend & DevOps Engineer' },
-        { name: 'twitter:image', content: `${SITE_URL}/og.png` },
       ],
     },
   },

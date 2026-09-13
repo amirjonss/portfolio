@@ -1,7 +1,13 @@
 <script setup lang="ts">
+import { education } from '~/data/education'
+
 const localePath = useLocalePath()
 
-const sections = ['projects', 'stack', 'about', 'path', 'contact'] as const
+const sections = [
+  'projects', 'stack', 'about', 'path',
+  ...(education.length ? (['education'] as const) : []),
+  'contact',
+] as const
 // якоря строятся от корня, чтобы шапка работала и со страницы /cv
 const anchor = (id: string) => `${localePath('/')}#${id}`.replace('//#', '/#')
 </script>

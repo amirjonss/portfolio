@@ -22,3 +22,6 @@ logs
 .env
 .env.*
 !.env.example
+
+# оригиналы изображений, в сборку не идут
+src-assets

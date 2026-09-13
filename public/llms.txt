@@ -1,17 +1,29 @@
 # Amirjon Fayzilloyev
 
-> Backend and DevOps engineer based in Uzbekistan. Writes PHP (Symfony, Laravel),
-> containerises services with Docker and runs them in production behind Nginx.
-> Working with backends since 2022. Currently open to backend / DevOps roles,
-> remote or with relocation.
+> Backend and DevOps engineer based in Uzbekistan. Writes PHP (Symfony, API Platform,
+> Laravel) and Vue (Quasar, Nuxt), containerises services with Docker and runs them in
+> production behind Nginx on his own server. Working with backends since 2022.
+> Currently open to backend / DevOps roles, remote or with relocation.
+
+## At a glance
+
+- Location: Tashkent, Uzbekistan (UTC+5)
+- Work format: remote, or relocation to the EU (visa sponsorship needed)
+- Availability: available now
+- English: B2 (Upper-Intermediate); Uzbek native, Russian fluent
+- Experience: 4 years commercial, teams of 3–6 with Git-flow and code review; end-to-end ownership on contracts
+- CV as PDF: https://amirjon.uz/cv-en.pdf (English), https://amirjon.uz/cv-ru.pdf (Russian)
 
 ## Profile
 
 - Role: Backend & DevOps Engineer
 - Location: Uzbekistan
 - Experience: since 2022
-- Core stack: PHP 8.4, Symfony, Laravel, Vue 3, PostgreSQL, MySQL, Redis, RabbitMQ, Docker, Nginx, Linux
-- Quality tooling: PHPUnit, PHPStan, PHP CS Fixer
+- Backend: PHP 8.x, Symfony 7, API Platform 4, Doctrine ORM, Laravel, Messenger, Mercure, JWT
+- Frontend: Vue 3, Quasar 2, Nuxt 4, Pinia, Tailwind 4, Capacitor, Electron
+- Data: PostgreSQL, MariaDB/MySQL, Redis, RabbitMQ
+- Ops: Docker Compose, Nginx, Linux, GitLab CI, GitHub Actions
+- Quality: PHPUnit, PHPStan, PHP CS Fixer, ESLint
 - Status: open to offers
 
 ## Pages
@@ -22,9 +34,24 @@
 
 ## Projects
 
-- [billing-api](https://github.com/amirjonss): subscription billing for SaaS on Symfony and PostgreSQL. Idempotent event log with a deduplication key and a RabbitMQ retry queue, so repeated payment webhooks never charge twice.
-- [crm-lite](https://github.com/amirjonss): CRM for small teams on Laravel and Vue 3. Removed N+1 on the deals list with eager loading and a materialised summary table, bringing page time under 100 ms.
-- [tg-notifier](https://github.com/amirjonss): notification bus on Symfony and RabbitMQ. Exponential backoff with a dead-letter queue so failed messages do not block the queue.
+All four run on the author's own server. The two applications with a backend have a
+one-click demo login on their sign-in page; no password is needed.
+
+- [Wirehouse](https://portfolio.front.warehouse.amirjon.uz) (2026): stock and cash accounting for a wholesale food trader. Symfony 7.3 + API Platform 4 + PostgreSQL API; Vue 3 + Tailwind client with Android (Capacitor), desktop (Electron) and ESC/POS receipt printing. Money is never a float and never summed across the two currencies; sales are allocated FIFO over batches; four append-only ledgers; pessimistic locks in a fixed order on every posting path; 127 test files. API: https://portfolio.api.warehouse.amirjon.uz/api. Code: https://github.com/amirjonss/warehouse-api, https://github.com/amirjonss/warehouse-front.
+- [KH Agency CRM](https://portfolio.front.smm-agency.amirjon.uz) (2025–2026): content-planning CRM for an SMM agency. Symfony 7.4 + API Platform 4 + MariaDB + Redis; Mercure pushes board changes over SSE in real time; Messenger runs reports and a daily Telegram digest in the background; Quasar client with kanban boards, a content calendar, three roles and PDF export. API: https://portfolio.api.smm-agency.amirjon.uz/api. Code: https://github.com/amirjonss/smm-crm-api, https://github.com/amirjonss/smm-crm-front.
+- [Blender course](https://portfolio.front.blender.amirjon.uz) (2022–2024): landing site for a 3D course in Uzbek — sections with 3D renders, a YouTube portfolio gallery, pricing and support. Quasar SPA on a responsive grid. Frontend only. Code: https://github.com/amirjonss/blender-course-front.
+- [Renthouse](https://portfolio.front.renthouse.amirjon.uz) (2022): marketplace for renting cottages — catalogue, cottage pages with Google Maps, favourites, owner cabinet, three interface languages. Quasar SPA. Frontend only. Code: https://github.com/amirjonss/renthouse-front.
+
+## Experience
+
+- Full-Stack Developer (contract), KH Agency — Oct 2025–present, remote. Designed and delivered a production CRM for an SMM agency with 30+ active users; saves 2–3 hours of daily operations and $1,944/year on third-party tools. Symfony 7, API Platform, RBAC, Messenger + Redis, Telegram reporting, Vue.js SPA, Docker, GitLab CI/CD, Ubuntu 24.04 server.
+- PHP Web Developer (full-time), JooL Pay, Lithuania — Oct 2024–Apr 2025, remote. Backend of a QR-code tipping payment platform: new payment provider with crypto support, monthly donation auto-charging, refactoring, unit tests.
+- Full Stack Developer (full-time), The Kadirov Group, Tashkent — Jan 2022–Jul 2024, remote. Boshqar.com (trade automation: DB performance, API architecture) and AstraCode.net (education platform: users, courses, chat; Redis, Elasticsearch).
+- Web Development Instructor (part-time), KadirovDev IT Academy — Jan 2022–Jul 2024, remote. Groups of 20, three cohorts graduated through a six-month intensive; PHP, JavaScript, Symfony, API Platform, Vue.js.
+
+## Education
+
+- School 21, Samarkand campus — since Aug 2024, in progress. Peer-to-peer programming school; projects are reviewed by other students.
 
 ## Contact
 

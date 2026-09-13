@@ -6,10 +6,10 @@ const head = useLocaleHead()
   <Html :lang="head.htmlAttrs?.lang" :dir="head.htmlAttrs?.dir">
     <Head>
       <template v-for="link in head.link" :key="link.id ?? link.href">
-        <Link :id="link.id" :rel="link.rel" :href="link.href" :hreflang="link.hreflang" />
+        <Link v-if="link.href" :id="link.id" :rel="link.rel" :href="link.href" :hreflang="link.hreflang" />
       </template>
       <template v-for="meta in head.meta" :key="meta.id ?? meta.property">
-        <Meta :id="meta.id" :property="meta.property" :content="meta.content" />
+        <Meta v-if="meta.content" :id="meta.id" :property="meta.property" :content="meta.content" />
       </template>
     </Head>
     <Body>

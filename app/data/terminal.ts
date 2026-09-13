@@ -6,8 +6,8 @@
  * хостнеймов, портов, путей к конфигам, адресов реестра и бакетов.
  * Всё вымышленное: srv-01, registry.local, s3://backups.
  *
- * TODO: цифры в сценах 3-4 — заглушки. Заменить на реальные, когда проекты
- * будут развёрнуты. Ложные метрики проверяются на собеседовании одним вопросом.
+ * Имена контейнеров в сцене 'ps' — реальные проекты с amirjon.uz.
+ * Цифры аптайма и метрик (сцена 'metrics') — декорация; не выдавать за замеры.
  */
 
 export type LineKind =
@@ -42,8 +42,8 @@ export const scenes: TerminalScene[] = [
       { kind: 'out', text: '     Loaded: loaded (/home/amirjon/career.service; enabled)', pause: 260 },
       { kind: 'out', text: '     Active: active (running) since 2022; 4 years', pause: 260 },
       { kind: 'out', text: '   Main PID: 2022 (php-fpm, symfony)', pause: 260 },
-      { kind: 'name', text: '      Tasks: 3 services in production', pause: 300 },
-      { kind: 'out', text: '     CGroup: └─ PHP · Symfony · Laravel · Docker · Vue.js', pause: 300 },
+      { kind: 'name', text: '      Tasks: 4 projects live, 2 with their own API', pause: 300 },
+      { kind: 'out', text: '     CGroup: └─ PHP · Symfony · API Platform · Docker · Vue.js', pause: 300 },
       gap(),
       { kind: 'ok', text: '  amirjon[2022]: status — open to offers', pause: 900 },
       gap(),
@@ -57,9 +57,9 @@ export const scenes: TerminalScene[] = [
       { kind: 'ok', text: '  [OK] 214 packages, autoloader optimized', pause: 460 },
       gap(),
       { kind: 'note', text: '// vendor/bin/phpunit', pause: 420 },
-      { kind: 'ok', text: '  [OK] 186 tests, 402 assertions — 0 failures   (4.1s)', pause: 520 },
+      { kind: 'ok', text: '  [OK] tests green — PHPUnit, dama transaction rollback', pause: 520 },
       gap(),
-      { kind: 'note', text: '// docker build -t billing-api:v2.4.1', pause: 420 },
+      { kind: 'note', text: '// docker build -t warehouse-api:latest', pause: 420 },
       { kind: 'ok', text: '  [OK] image 92 MB — multi-stage, php:8.4-fpm-alpine', pause: 500 },
       gap(),
       { kind: 'note', text: '// rolling update, zero downtime', pause: 380 },
@@ -75,9 +75,13 @@ export const scenes: TerminalScene[] = [
     lines: [
       { kind: 'cmd', text: 'docker ps --format "table {{.Names}}\\t{{.Status}}"' },
       { kind: 'out', text: 'NAMES           STATUS', pause: 240 },
-      { kind: 'name', text: 'billing-api     Up 12 days (healthy)', pause: 260 },
-      { kind: 'name', text: 'crm-lite        Up 31 days (healthy)', pause: 260 },
-      { kind: 'name', text: 'tg-notifier     Up 7 days (healthy)', pause: 900 },
+      { kind: 'name', text: 'warehouse-api    Up 3 days (healthy)', pause: 240 },
+      { kind: 'name', text: 'warehouse-front  Up 3 days', pause: 240 },
+      { kind: 'name', text: 'smm-crm-api      Up 3 days (healthy)', pause: 240 },
+      { kind: 'name', text: 'smm-crm-front    Up 3 days', pause: 240 },
+      { kind: 'name', text: 'mercure          Up 3 days', pause: 240 },
+      { kind: 'name', text: 'blender-front    Up 3 days', pause: 240 },
+      { kind: 'name', text: 'renthouse-front  Up 3 days', pause: 900 },
       gap(),
     ],
   },
@@ -95,7 +99,7 @@ export const scenes: TerminalScene[] = [
   {
     id: 'commit',
     lines: [
-      { kind: 'cmd', text: 'git commit -m "fix(billing): release pool on webhook retry"' },
+      { kind: 'cmd', text: 'git commit -m "Count a stocktake per product, not per batch"' },
       { kind: 'out', text: '[main 7f3a91c] 2 files changed, 31 insertions(+), 8 deletions(-)', pause: 420 },
       gap(),
       { kind: 'cmd', text: 'git push origin main' },

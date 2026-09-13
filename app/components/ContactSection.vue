@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { contacts } from '~/data/projects'
+import { profile } from '~/data/profile'
 
 const localePath = useLocalePath()
+const { locale } = useI18n()
+const cvPdf = computed(() => profile.cvPdf[locale.value] ?? profile.cvPdf.en)
 
 const links = [
   { id: 'GitHub', href: contacts.github, handle: contacts.githubHandle },
@@ -46,12 +49,22 @@ const links = [
           </a>
         </div>
 
-        <NuxtLink
-          :to="localePath('/cv')"
-          class="mt-8 inline-block rounded-[10px] bg-accent px-6 py-3 font-medium text-[#07100e] transition hover:-translate-y-0.5 hover:bg-accent-hi"
-        >
-          {{ $t('contact.downloadCv') }}
-        </NuxtLink>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a
+            :href="cvPdf"
+            download
+            class="inline-block rounded-[10px] bg-accent px-6 py-3 font-medium text-[#07100e] transition hover:-translate-y-0.5 hover:bg-accent-hi"
+          >
+            ↓ {{ $t('profile.downloadPdf') }}
+          </a>
+          <NuxtLink
+            :to="localePath('/cv')"
+            class="inline-block rounded-[10px] border border-line px-6 py-3 font-medium text-ink transition hover:border-dim"
+          >
+            {{ $t('contact.downloadCv') }}
+          </NuxtLink>
+          <span class="font-mono text-[11px] text-dim">{{ $t('profile.pdfHint') }}</span>
+        </div>
       </RevealOnScroll>
     </div>
   </section>
