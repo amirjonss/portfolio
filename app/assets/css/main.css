@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0d0d0f;
+  --color-panel: #161619;
+  --color-panel-top: #1e1e22;
+  --color-line: #2a2a30;
+  --color-line-soft: #232329;
+  --color-ink: #ededf0;
+  --color-muted: #8b8b95;
+  --color-dim: #5e5e68;
+  --color-accent: #5eead4;
+  --color-accent-hi: #7af0dd;
+  --color-amber: #e5c07b;
+
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* чтобы якорь не уезжал под липкую шапку */
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #07100e;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

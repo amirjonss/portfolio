@@ -1,0 +1,29 @@
+<!doctype html>
+<meta charset="utf-8">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box }
+  body {
+    width:1200px; height:630px; background:#0d0d0f; color:#ededf0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    display:flex; flex-direction:column; justify-content:center;
+    padding:0 84px; position:relative; overflow:hidden;
+  }
+  body::before {
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(680px 460px at 78% 26%, rgba(94,234,212,.12), transparent 70%);
+  }
+  .wrap { position:relative }
+  .brand { font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:24px; color:#8b8b95; margin-bottom:44px }
+  .brand b { color:#5eead4; font-weight:500 }
+  h1 { font-size:86px; font-weight:800; letter-spacing:-.035em; line-height:1.02 }
+  .role { font-size:34px; color:#5eead4; margin-top:18px; font-weight:600; letter-spacing:-.02em }
+  .stack { font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:23px; color:#8b8b95; margin-top:40px }
+  .bar { position:absolute; left:0; right:0; bottom:0; height:8px; background:#5eead4 }
+</style>
+<div class="wrap">
+  <div class="brand">amirjon<b>.uz</b></div>
+  <h1>Amirjon Fayzilloyev</h1>
+  <div class="role">Backend &amp; DevOps Engineer</div>
+  <div class="stack">PHP · Symfony · Laravel · Docker · Vue.js · Uzbekistan</div>
+</div>
+<div class="bar"></div>

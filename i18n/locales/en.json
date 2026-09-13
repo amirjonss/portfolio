@@ -1,0 +1,114 @@
+{
+  "meta": {
+    "title": "Amirjon Fayzilloyev — Backend & DevOps Engineer",
+    "description": "Backend engineer from Uzbekistan. PHP, Symfony, Laravel, Docker, Vue.js. I take services from idea to production and keep them running.",
+    "cvTitle": "CV — Amirjon Fayzilloyev",
+    "cvDescription": "Full CV of Amirjon Fayzilloyev: backend and DevOps experience, stack, projects and contacts."
+  },
+  "nav": {
+    "projects": "Projects",
+    "stack": "Stack",
+    "about": "About",
+    "path": "Path",
+    "contact": "Contact",
+    "cv": "CV",
+    "menu": "Menu",
+    "switchLang": "Switch language"
+  },
+  "hero": {
+    "badge": "3 services in production",
+    "titleA": "Backends",
+    "titleB": "that",
+    "titleC": "stay up",
+    "lead": "PHP, Symfony, Laravel, Docker, Vue.js. I take services from idea to production — and keep them alive there.",
+    "ctaProjects": "View projects",
+    "ctaContact": "Get in touch",
+    "statYears": "Since 2022",
+    "statYearsLabel": "writing backends",
+    "statServices": "3",
+    "statServicesLabel": "services in production",
+    "statFocus": "PHP · Docker",
+    "statFocusLabel": "core stack"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Services I designed, built and deployed myself.",
+    "problem": "Problem",
+    "role": "My role",
+    "challenge": "Hard part",
+    "demo": "Live demo",
+    "code": "Source",
+    "soon": "Demo coming soon",
+    "status": { "live": "running", "wip": "in progress" },
+    "items": {
+      "billing-api": {
+        "name": "billing-api",
+        "tagline": "Subscription billing for SaaS",
+        "problem": "Invoicing was kept in spreadsheets. As soon as plans, proration and refunds appeared, every month ended with manual reconciliation and mistakes that reached customers.",
+        "role": "Sole backend developer: domain model, REST API, payment-provider webhooks, containerisation and deployment.",
+        "challenge": "Payment webhooks arrive out of order and more than once — a naive handler charges twice. I built an idempotent event log with a deduplication key and a retry queue on RabbitMQ, so a repeated callback is recorded but never billed again."
+      },
+      "crm-lite": {
+        "name": "crm-lite",
+        "tagline": "CRM for small teams",
+        "problem": "A small sales team tracked deals in chat and notes. Nothing was searchable, nobody could tell which deals had gone quiet, and handover between people lost context.",
+        "role": "Full stack: Laravel API and admin, Vue 3 interface, role model, Docker Compose setup for local work and production.",
+        "challenge": "The deals list grew to thousands of rows with related contacts, tasks and stages — classic N+1, the page took seconds. Eager loading plus a materialised summary table brought it under 100 ms and kept it there as the data grew."
+      },
+      "tg-notifier": {
+        "name": "tg-notifier",
+        "tagline": "Notification bus over RabbitMQ",
+        "problem": "Several services each sent their own Telegram messages. Rate limits were hit, failed sends disappeared silently, and every new service duplicated the same code.",
+        "role": "Designed and built the service: message contract, queue topology, templates, retries and monitoring.",
+        "challenge": "Telegram limits the send rate and returns errors that must be treated differently — some are worth retrying, some are not. I added exponential backoff with a dead-letter queue, so a broken message stops eating the queue instead of blocking everything behind it."
+      }
+    }
+  },
+  "stack": {
+    "title": "Stack",
+    "subtitle": "What I use daily, not what I once read about.",
+    "groups": {
+      "lang": "Languages",
+      "frameworks": "Frameworks",
+      "data": "Data & queues",
+      "ops": "Infrastructure",
+      "quality": "Quality"
+    }
+  },
+  "about": {
+    "title": "About",
+    "p1": "I'm Amirjon, a backend engineer from Uzbekistan. I started writing PHP in 2022 and stayed with it: Symfony where the domain matters, Laravel where speed of delivery matters more.",
+    "p2": "What I enjoy most is the part after the code is written — packing a service into a container, giving it a pipeline, metrics and backups, and watching it run without waking anyone at night.",
+    "p3": "Right now I'm looking for a team where I can own services end to end: from the data model to the deployment that ships them."
+  },
+  "path": {
+    "title": "Path",
+    "subtitle": "How I got here.",
+    "items": {
+      "start": { "year": "2022", "title": "First line of PHP", "text": "Moved from scripts to real applications: MVC, databases, HTTP. Learned by rebuilding things that already existed until they worked the same way." },
+      "laravel": { "year": "2023", "title": "Laravel in practice", "text": "First delivered projects: admin panels, APIs, integrations. Learned that most of the work is not writing code but keeping it readable six months later." },
+      "symfony": { "year": "2024", "title": "Symfony and Docker", "text": "Moved to stricter architecture and containers. Test suites, static analysis, CI pipelines, deployment without downtime." },
+      "now": { "year": "Now", "title": "Looking for a team", "text": "Open to backend / DevOps roles — remote or relocation." }
+    }
+  },
+  "contact": {
+    "title": "Let's talk",
+    "lead": "Open to backend and DevOps roles, remote or relocation. Fastest reply is on Telegram.",
+    "email": "Email",
+    "downloadCv": "Open CV"
+  },
+  "footer": {
+    "built": "Built with Nuxt, deployed on my own server.",
+    "source": "Source on GitHub"
+  },
+  "cv": {
+    "back": "Back to site",
+    "title": "Amirjon Fayzilloyev",
+    "role": "Backend & DevOps Engineer · Uzbekistan",
+    "summaryTitle": "Summary",
+    "stackTitle": "Technical skills",
+    "projectsTitle": "Selected projects",
+    "pathTitle": "Path",
+    "contactTitle": "Contacts"
+  }
+}
